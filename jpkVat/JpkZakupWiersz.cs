@@ -29,7 +29,7 @@ namespace bp.jpkVat
                 int v = -1;
                 var last4 = String.Join("", _nrDostawcy.ToCharArray().TakeLast(4));
                 bool canParse = Int32.TryParse(last4, out v);
-                return canParse ? string.Join("", _nrDostawcy.ToCharArray().Take(10)) : res;
+                return canParse ? string.Join("", _nrDostawcy.ToCharArray().TakeLast(10)) : res;
             }
             set { this._nrDostawcy = value; }
         }
@@ -50,7 +50,7 @@ namespace bp.jpkVat
         }
         private string _adresDostawcy { get; set; }
         public string AdresDostawcy { get {
-                if (string.IsNullOrWhiteSpace(_adresDostawcy))
+                if (!string.IsNullOrWhiteSpace(_adresDostawcy))
                 {
                     return _adresDostawcy.Replace((char)34, (char)39);
                 }

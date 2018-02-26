@@ -23,7 +23,7 @@ namespace bp.jpkVat
                 int v = -1;
                 var last4 = String.Join("", _nip.ToCharArray().TakeLast(4));
                 bool canParse = Int32.TryParse(last4, out v);
-                return canParse ? string.Join("", _nip.ToCharArray().Take(10)) : res;
+                return canParse ? string.Join("", _nip.ToCharArray().TakeLast(10)) : res;
             }
             set { this._nip = value; }
         }

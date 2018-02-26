@@ -24,7 +24,7 @@ namespace bp.jpkVat
 
                 var plus = k44.Value + k46.Value + k47.Value + k48.Value + k49.Value + k50.Value;
 
-                return plus;
+                return Math.Round(plus,2);
             } }
     }
 }

@@ -13,6 +13,6 @@ namespace bp.jpkVat
         public DateTime DataWytworzeniaJPK { get; set; }
         public DateTime DataOd { get; set; }
         public DateTime DataDo { get; set; }
-        public string NazwaSystemu { get; set; }
+        public string NazwaSystemu => "BartoszProchowski";
     }
 }

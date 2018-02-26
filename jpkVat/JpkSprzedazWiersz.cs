@@ -38,7 +38,7 @@ namespace bp.jpkVat
                 int v = -1;
                 var last4 = String.Join("", _nrKontrahenta.ToCharArray().TakeLast(4));
                 bool canParse = Int32.TryParse(last4, out v);
-                return canParse ? string.Join("", _nrKontrahenta.ToCharArray().Take(10)) : res;
+                return canParse ? string.Join("", _nrKontrahenta.ToCharArray().TakeLast(10)) : res;
             }
             set { this._nrKontrahenta = value; }
         }
@@ -56,7 +56,7 @@ namespace bp.jpkVat
             } }
         private string _adresKontrahent { get; set; }
         public string AdresKontrahenta { get {
-                if (string.IsNullOrWhiteSpace(_adresKontrahent)) {
+                if (!string.IsNullOrWhiteSpace(_adresKontrahent)) {
                     return _adresKontrahent.Replace((char)34, (char)39);
                 }
                 else { return null; }

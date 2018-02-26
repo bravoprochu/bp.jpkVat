@@ -31,8 +31,8 @@ namespace bp.jpkVat
 
                 var plus = k16.Value + k18.Value + k20.Value + k24.Value + k26.Value + k28.Value + k30.Value + k33.Value + k35.Value + k36.Value + k37.Value;
                 var minus = SprzedazWiersz.Sum(k => k.K_38);
-
-                return (plus - minus.Value);
+                var res = plus - minus.Value;
+                return Math.Round(res, 2);
             }
         }
     }

@@ -15,8 +15,24 @@ namespace bp.jpkVat
         }
         
         public int LpZakupu { get; set; }
+        [MinLength(4)]
+        private string _nrDostawcy { get; set; }
         [MaxLength(10)]
-        public string NrDostawcy { get; set; }
+        public string NrDostawcy
+        {
+            get
+            {
+                string res = "brak";
+                if (_nrDostawcy?.Length < 10) {
+                    return res;
+                }
+                int v = -1;
+                var last4 = String.Join("", _nrDostawcy.ToCharArray().TakeLast(4));
+                bool canParse = Int32.TryParse(last4, out v);
+                return canParse ? string.Join("", _nrDostawcy.ToCharArray().Take(10)) : res;
+            }
+            set { this._nrDostawcy = value; }
+        }
         private string _nazwaDostawcy;
         public string NazwaDostawcy
         {

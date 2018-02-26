@@ -9,14 +9,24 @@ namespace bp.jpkVat
     public class JpkPodmiot
     {
         [MinLength(4)]
-        private string _nip {get;set;}
+        private string _nip { get; set; }
         [MaxLength(10)]
-        public string NIP { get {
-                string res = "";
+        public string NIP
+        {
+            get
+            {
+                string res = "brak";
+                if (_nip?.Length < 10)
+                {
+                    return res;
+                }
                 int v = -1;
-                bool canParse=Int32.TryParse(_nip.TakeLast(4).ToString(), out v);
-                return canParse ? _nip : "brak";
-            } set { this._nip = value; } }
+                var last4 = String.Join("", _nip.ToCharArray().TakeLast(4));
+                bool canParse = Int32.TryParse(last4, out v);
+                return canParse ? string.Join("", _nip.ToCharArray().Take(10)) : res;
+            }
+            set { this._nip = value; }
+        }
         private string pelnaNazwa;
         public string PelnaNazwa
         {

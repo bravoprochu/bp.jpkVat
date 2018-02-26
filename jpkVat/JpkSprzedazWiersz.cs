@@ -23,8 +23,25 @@ namespace bp.jpkVat
         }
 
         public int LpSprzedazy { get; set; }
+        [MinLength(4)]
+        private string _nrKontrahenta { get; set; }
         [MaxLength(10)]
-        public string NrKontrahenta { get; set; }
+        public string NrKontrahenta
+        {
+            get
+            {
+                string res = "brak";
+                if (_nrKontrahenta?.Length < 10)
+                {
+                    return res;
+                }
+                int v = -1;
+                var last4 = String.Join("", _nrKontrahenta.ToCharArray().TakeLast(4));
+                bool canParse = Int32.TryParse(last4, out v);
+                return canParse ? string.Join("", _nrKontrahenta.ToCharArray().Take(10)) : res;
+            }
+            set { this._nrKontrahenta = value; }
+        }
         private string _nazwaKontrahent { get; set; }
         public string NazwaKontrahenta { get {
                 if (!string.IsNullOrWhiteSpace(_nazwaKontrahent))
